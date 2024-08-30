@@ -44,3 +44,11 @@ ScrollReveal().reveal(".news", { easing: "ease-in", delay: 200 });
 ScrollReveal().reveal(".events", { easing: "ease-in", delay: 200 });
 ScrollReveal().reveal(".jobs", { easing: "ease-in", delay: 200 });
 ScrollReveal().reveal(".register", { easing: "ease-in", delay: 200 });
+
+
+const burger = document.querySelector("#burger");
+burger.addEventListener("click", () => {
+  Array.prototype.forEach.call(burger.children, (c) => {
+    c.classList.toggle("active");
+  });
+});

@@ -14,7 +14,7 @@
     <script>
         document.addEventListener("DOMContentLoaded", function () {
             if (!localStorage.getItem('visited')) {
-                window.location.href = '/welcome.html'; // Substitua 'welcome.html' pelo caminho da sua tela de boas-vindas
+                window.location.href = '/welcome.html';
             } else {
                 localStorage.removeItem('visited');
             }
@@ -31,41 +31,95 @@
             <a href="https://github.com/Gururaj-Math" target="_blank"><i class='bx bxl-github'></i></a>
         </div>
         <div class="head">
-            @RHYAN<span>.DEV</span>
+            RHYAN<span>.DEV</span>
         </div>
         <div class="search">
-                <div class="toggle">
-                    <div class="switch" onclick="toggleMode()">
-                        <button></button>
-                        <span> </span>
-                    </div>
+            <div class="toggle">
+                <div class="switch" onclick="toggleMode()">
+                    <button></button>
+                    <span> </span>
                 </div>
-            <i class="fa-solid fa-bars on hamburger"></i>
-            
+            </div>
+
+            <div id="bg"></div>
+            <nav id="burger">
+                <svg class="brg burger-top" width="57" height="12" viewBox="0 0 57 12" fill="none"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <rect width="50.4501" height="4.12399" rx="2.06199"
+                        transform="matrix(-1 8.74228e-08 8.74228e-08 1 53.7493 7.28571)" fill="#FF3C30" />
+                    <path
+                        d="M56.3612 7.03828C56.3612 3.15114 53.21 2.75482e-07 49.3229 6.15306e-07L7.03827 4.31195e-06C3.15113 4.65177e-06 -7.35391e-06 3.15115 -7.01409e-06 7.03828V7.03828C-6.92913e-06 8.01006 0.787779 8.79785 1.75956 8.79785L54.6016 8.79784C55.5734 8.79784 56.3612 8.01006 56.3612 7.03828V7.03828Z"
+                        fill="#FFD15A" />
+                    <circle r="1.031" transform="matrix(-1 8.74228e-08 8.74228e-08 1 47.907 2.81806)" fill="#FCFF71" />
+                    <circle r="1.031" transform="matrix(-1 8.74228e-08 8.74228e-08 1 36.9097 5.42992)" fill="#FCFF71" />
+                    <circle r="1.031" transform="matrix(-1 8.74228e-08 8.74228e-08 1 19.8638 5.70486)" fill="#FCFF71" />
+                    <circle r="1.031" transform="matrix(-1 8.74228e-08 8.74228e-08 1 8.86652 3.50539)" fill="#FCFF71" />
+                    <circle r="1.031" transform="matrix(-1 8.74228e-08 8.74228e-08 1 28.3868 3.23046)" fill="#FCFF71" />
+                </svg>
+                <svg class="brg burger-mid" width="58" height="10" viewBox="0 0 58 10" fill="none"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <rect width="57.7359" height="6.87332" rx="3.43666"
+                        transform="matrix(-1 8.74228e-08 8.74228e-08 1 57.8733 2.68195)" fill="#55463D" />
+                    <path
+                        d="M29.0698 7.72655C28.9366 7.75402 28.7992 7.75402 28.6659 7.72655L13.4671 4.5926C12.2877 4.34941 12.4648 2.61321 13.669 2.61321L44.0667 2.6132C45.271 2.6132 45.4481 4.34941 44.2687 4.5926L29.0698 7.72655Z"
+                        fill="#EBFF00" />
+                </svg>
+                <svg class="brg burger-bot" width="58" height="17" viewBox="0 0 58 17" fill="none"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M5.50884 2.76097C3.85707 2.32056 2.33803 3.38031 1.82186 7.30272C1.30568 11.2251 6.68868 12.3262 6.68868 12.3262L52.1861 12.3261C52.1861 12.3261 57.2004 8.33492 55.6519 4.20607C54.1033 0.0772085 53.13 -0.872421 47.7617 2.76097C41.0514 7.30271 46.6556 5.51354 38.6917 2.76097C30.7278 0.00840628 32.1289 3.44911 28.6631 5.10066C25.1974 6.7522 22.3215 5.78879 21.1417 4.20607C19.9618 2.62334 14.6526 1.17824 11.3343 4.20607C8.016 7.2339 7.57356 3.31149 5.50884 2.76097Z"
+                        fill="#24FF00" />
+                    <path
+                        d="M0.824767 9.96172C0.824768 13.8489 3.97591 17 7.86305 17L50.1477 17C54.0348 17 57.186 13.8489 57.186 9.96172V9.96172C57.186 8.98994 56.3982 8.20215 55.4264 8.20215L2.58434 8.20216C1.61255 8.20216 0.824767 8.98994 0.824767 9.96172V9.96172Z"
+                        fill="#FFD15A" />
+                    <circle r="1.031" transform="matrix(-1 8.74228e-08 8.74228e-08 1 49.2816 11.1577)" fill="#FCFF71" />
+                    <circle r="1.031" transform="matrix(-1 8.74228e-08 8.74228e-08 1 38.2843 13.7696)" fill="#FCFF71" />
+                    <circle r="1.031" transform="matrix(-1 8.74228e-08 8.74228e-08 1 21.2385 14.0445)" fill="#FCFF71" />
+                    <circle r="1.031" transform="matrix(-1 8.74228e-08 8.74228e-08 1 10.2412 11.845)" fill="#FCFF71" />
+                    <circle r="1.031" transform="matrix(-1 8.74228e-08 8.74228e-08 1 29.7614 11.5701)" fill="#FCFF71" />
+                </svg>
+
+                <ul class="nav-links">
+                    <li class="nav-link"><a href="">Home</a></li>
+                    <li class="nav-link"><a href="">Portfólio</a></li>
+                    <li class="nav-link"><a href="">LinkedIn</a></li>
+                    <li class="nav-link"><a href="">Contatos</a></li>
+                </ul>
+
+            </nav>
+            <!-- <i class="fa-solid fa-bars on hamburger"></i>
+            <div class="alert">
+                <ul class="navigation1">
+                    <i class='bx bxs-x-circle close'></i>
+                    <li><a href="#banner" class="out">HOME</a></li>
+                    <li><a href="#news" class="out">Portfólio</a></li>
+                    <li><a href="#jobs" class="out">Contato</a></li>
+                    <li><a href="#register" class="out">REVIEWS</a></li>
+                </ul>
+                </i>
+            </div> -->
         </div>
     </div>
-    <div class="alert">
-        <ul class="navigation1">
-            <i class='bx bxs-x-circle close'></i>
-            <li><a href="#banner" class="out">HOME</a></li>
-            <li><a href="#news" class="out">Portfólio</a></li>
-            <li><a href="#jobs" class="out">Contato</a></li>
-            <li><a href="#register" class="out">REVIEWS</a></li>
-        </ul>
-        </i>
+
+    <div>
+        <div class="title">
+            <h1>
+                Rhyan Andrade
+                <p>
+                    Frontend <span>developer</span>
+                </p>
+            </h1>
+        </div>
     </div>
-    </header>
-    <!--NAVBAR-->
-    <div class="header">
-        <ul class="navigation">
-            <li><a href="#banner" class="out">HOME</a></li>
-            <li><a href="#news" class="out">PORTFÓLIO</a></li>
-            <li><a href="#jobs" class="out">CONTATO</a></li>
-            <li><a href="#register">LINKEDIN</a></li>
-        </ul>
-    </div>
- 
-    <!-- <section class="strip">
+
+    <!-- Made By Aditya Rahmanda -->
+    <div class="wrapper">
+        <div class="hamburger-menu-button" onClick="toggleMenu()">
+            <div class="hamburger-menu">
+            </div>
+        </div>
+
+        <!-- <section class="strip">
         <h1>Design e código de Rhyan</h1>
         <div class="icons">
             <a href="https://www.linkedin.com/in/gururaj-math-223360255/" target="_blank"><i
@@ -75,10 +129,12 @@
         </div>
         </div>
     </section> -->
-<script src="/Controllers/script.js"></script>
-<script src="/Controllers/switch.js"></script>
-<script type="module" git src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
-<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+
+        <script src="/Controllers/script.js"></script>
+        <script src="/Controllers/switch.js"></script>
+
+        <script type="module" git src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+        <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 </body>
 
 </html>
