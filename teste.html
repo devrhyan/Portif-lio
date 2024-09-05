@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jogo de Nave</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            background: #000;
+            color: #fff;
+            font-family: Arial, sans-serif;
+        }
+
+        .game-container {
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+        }
+
+        .spaceship {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50px;
+            height: 50px;
+            background: url('/Img/estrangeiro.png     ') no-repeat center center;
+            background-size: contain;
+        }
+
+        .bullet {
+            position: absolute;
+            width: 5px;
+            height: 20px;
+            background: rgb(187, 128, 255);
+        }
+
+        .title-name {
+            position: absolute;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+        }
+
+        .letter {
+            display: inline-block;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="game-container">
+        <div class="spaceship"></div>
+        <div class="title-name">
+            <h1 id="line1">Rhyan Andrade</h1>
+            <p id="line2">Frontend <span>developer</span></p>
+        </div>
+    </div>
+    <script>
+        document.addEventListener('keydown', function (event) {
+            const spaceship = document.querySelector('.spaceship');
+            const step = 10; // Define the movement step
+
+            switch (event.code) {
+                case 'ArrowLeft':
+                    spaceship.style.left = Math.max(0, spaceship.offsetLeft - step) + 'px';
+                    break;
+                case 'ArrowRight':
+                    spaceship.style.left = Math.min(window.innerWidth - spaceship.offsetWidth, spaceship.offsetLeft + step) + 'px';
+                    break;
+                case 'Space':
+                    shoot();
+                    break;
+            }
+        });
+
+        function shoot() {
+            const bullet = document.createElement('div');
+            bullet.className = 'bullet';
+            const spaceship = document.querySelector('.spaceship');
+            bullet.style.left = spaceship.offsetLeft + spaceship.offsetWidth / 2 - 2.5 + 'px';
+            bullet.style.top = spaceship.offsetTop + 'px';
+            document.body.appendChild(bullet);
+
+            const interval = setInterval(() => {
+                bullet.style.top = bullet.offsetTop - 5 + 'px';
+
+                const elements = document.elementsFromPoint(bullet.offsetLeft, bullet.offsetTop);
+                for (let element of elements) {
+                    if (element.classList.contains('letter')) {
+                        element.remove();
+                        bullet.remove();
+                        clearInterval(interval);
+                        return;
+                    }
+                }
+
+                if (bullet.offsetTop < 0) {
+                    bullet.remove();
+                    clearInterval(interval);
+                }
+            }, 10);
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const textElements = document.querySelectorAll('.title-name h1, .title-name p');
+            textElements.forEach(element => {
+                element.innerHTML = element.textContent.replace(/\S/g, "<span class='letter'>$&</span>");
+            });
+        });
+    </script>
+</body>
+
+</html>
