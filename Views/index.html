@@ -1,3 +1,5 @@
+<!DOCTYPE html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -91,12 +93,19 @@
     </div>
 
 <div class="game-container">
-    <div class="spaceship"></div>
+    <div class="spaceship hidden"></div>
     <div class="title-name">
         <h1 id="line1">Rhyan Andrade</h1>
         <p id="line2">Frontend <span>developer</span></p>
+        <p class="content">Gosto de criar produtos front-end sólidos e escaláveis com ótimas experiências do usuário</p>
     </div>
 </div>
+
+<!-- <div class="loader__2">R</div> -->
+<a class="game" href="#" onclick="toggleSpaceship()">
+    <span>Destruir</span>
+    <div class="aguado"></div>
+</a>
 
 <script>
     document.addEventListener('keydown', function (event) {
@@ -121,6 +130,14 @@
                 shoot();
                 break;
         }
+
+        // Check for collision with letters
+        const elements = document.elementsFromPoint(spaceship.offsetLeft + spaceship.offsetWidth / 2, spaceship.offsetTop + spaceship.offsetHeight / 2);
+        elements.forEach(element => {
+            if (element.classList.contains('letter')) {
+                element.remove();
+            }
+        });
     });
 
     function shoot() {
@@ -130,6 +147,14 @@
         bullet.style.left = spaceship.offsetLeft + spaceship.offsetWidth / 2 - 2.5 + 'px';
         bullet.style.top = spaceship.offsetTop + 'px';
         document.body.appendChild(bullet);
+
+        // Adiciona a borda de choque
+        spaceship.classList.add('shock-border');
+
+        // Remove a borda de choque após 200ms
+        setTimeout(() => {
+            spaceship.classList.remove('shock-border');
+        }, 200);
 
         const interval = setInterval(() => {
             bullet.style.top = bullet.offsetTop - 5 + 'px';
@@ -151,20 +176,34 @@
         }, 10);
     }
 
+    function toggleSpaceship() {
+        const spaceship = document.querySelector('.spaceship');
+        spaceship.classList.toggle('hidden');
+    }
+
     document.addEventListener('DOMContentLoaded', () => {
         const textElements = document.querySelectorAll('.title-name h1, .title-name p');
         textElements.forEach(element => {
             element.innerHTML = element.textContent.replace(/\S/g, "<span class='letter'>$&</span>");
         });
     });
+
+    document.addEventListener('DOMContentLoaded', () => {
+        const textElements = document.querySelectorAll('.title-name h1, .title-name p');
+        textElements.forEach(element => {
+            element.innerHTML = element.textContent.replace(/\S/g, (match, index) => `<span class='letter' style='--index: ${index}'>${match}</span>`);
+        });
+    });
 </script>
-    
 
-        <script src="/Controllers/script.js"></script>
-        <script src="/Controllers/switch.js"></script>
 
-        <script type="module" git src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
-        <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+
+
+    <script src="/Controllers/script.js"></script>
+    <script src="/Controllers/switch.js"></script>
+
+    <script type="module" git src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 </body>
 
 </html>
