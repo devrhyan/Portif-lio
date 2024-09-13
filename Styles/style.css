@@ -43,6 +43,8 @@
   font-family: "Cinzel", serif;
   font-optical-sizing: auto;
   font-style: normal;
+  color: #ffffff;
+  text-decoration: none;
 }
 
 body {
@@ -69,7 +71,6 @@ body {
   padding: 0 50px;
   font-size: 1.5em;
   background-color: #070F2B !important;
-  color: #ffffff;
   border-bottom: 0.5px solid rgb(255, 255, 255);
 }
 
@@ -78,20 +79,6 @@ body {
   color: var(--secundary);
   transition: 0.5s;
 
-}
-
-.top .links a:hover {
-  color: var(--secondary);
-  transition: 0.5s;
-}
-
-.top .head {
-  font-weight: 600;
-}
-
-.top .head span,
-span {
-  color: #9290C3;
 }
 
 .top .search i {
@@ -107,13 +94,9 @@ span {
   display: none;
 }
 
-.circle {
-  margin: 0;
-  font-size: 2.5em;
-  font-weight: 900;
-  padding: 0;
+.logo img {
+  width: 13rem;
 }
-
 
 .switch {
   position: relative;
@@ -139,9 +122,9 @@ span {
   animation: slide-in 0.3s forwards;
 }
 
-.switch button:hover {
+/* .switch button:hover {
   outline: 8px solid var(--highlight-color);
-}
+} */
 
 .switch span {
   display: block;
@@ -243,20 +226,15 @@ span {
   -webkit-clip-path: circle(200vw at 0);
 }
 
-a {
-  text-decoration: none;
-  color: inherit;
-}
-
-.navigation1 li a {
+/* .navigation1 li a {
   font-family: 'Poppins', sans-serif;
   scroll-behavior: smooth;
-}
+} */
 
 .title-name {
   opacity: 0;
   transform: translateY(80px);
-  animation: slideUp 2s forwards;
+  animation: slideUp .9s forwards;
 }
 
 .title-name {
@@ -275,26 +253,16 @@ a {
   font-size: 1rem;
 }
 
-.title-name h1 .letter {
-  color: #fff;
-}
-
 .title-name h1 .letter,
 .title-name p .letter {
   animation-delay: calc(var(--index) * 0.1s);
 }
 
 
-.container-2 {
-  width: 100vw;
-  height: 100vh;
-  border: 1px solid white;
-}
-
 .fade-in-left {
   opacity: 0;
   transform: translateX(-50px);
-  animation: fadeInLeft 1s forwards;
+  animation: fadeInLeft .1s forwards;
 }
 
 @keyframes fadeInLeft {
@@ -368,7 +336,7 @@ a {
 .letter {
   display: inline-block;
   opacity: 0;
-  animation: fadeIn 1s forwards;
+  animation: fadeIn 0s forwards;
 }
 
 @keyframes fadeIn {
@@ -531,4 +499,46 @@ a:hover .aguado {
 
 .hidden {
   display: none;
+}
+
+@keyframes shatter {
+  0% {
+    transform: translate(0, 0) scale(1);
+    opacity: 1;
+  }
+
+  100% {
+    transform: translate(var(--shatter-x), var(--shatter-y)) scale(0.5);
+    opacity: 0;
+  }
+}
+
+.letter.shard {
+  position: absolute;
+  display: inline-block;
+  animation: shatter 0.5s forwards;
+  color: inherit;
+  /* Mantém a cor da letra original */
+  background-color: #9290C3;
+  /* Cor dos estilhaços */
+  pointer-events: none;
+  /* Impede que os estilhaços interfiram na detecção de colisão */
+}
+
+.progress-container {
+  width: 100%;
+  background-color: #ddd;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 20px;
+}
+
+.progress-bar {
+  width: 0;
+  height: 100%;
+  background-color: #9290C3;
+  text-align: center;
+  line-height: 20px;
+  color: white;
 }

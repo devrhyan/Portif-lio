@@ -32,8 +32,8 @@
             <a href="https://codepen.io/gururajmath"><i class='bx bxl-codepen' target="_blank"></i></a>
             <a href="https://github.com/Gururaj-Math" target="_blank"><i class='bx bxl-github'></i></a>
         </div>
-        <div class="head">
-            RHYAN<span class="circle">.</span><span>DEV</span>
+        <div class="logo">
+           <img src="/Img/Screenshot_1.png" alt="" srcset="">
         </div>
         <div class="search">
             <div class="toggle">
@@ -95,105 +95,118 @@
 <div class="game-container">
     <div class="spaceship hidden"></div>
     <div class="title-name">
-        <h1 id="line1">Rhyan Andrade</h1>
-        <p id="line2">Frontend <span>developer</span></p>
+        <p id="line1">Rhyan Andrade</p>
+        <h1 id="line1">Front-End <span>developer</span></h1>
         <p class="content">Gosto de criar produtos front-end sólidos e escaláveis com ótimas experiências do usuário</p>
     </div>
+    <!-- <div class="img-content">
+        <img src="/Img/Screenshot_2.png" alt="" srcset="">
+    </div> -->
 </div>
 
 <!-- <div class="loader__2">R</div> -->
 <a class="game" href="#" onclick="toggleSpaceship()">
-    <span>Destruir</span>
+    <span>Destroy</span>
     <div class="aguado"></div>
 </a>
 
 <script>
-    document.addEventListener('keydown', function (event) {
-        const spaceship = document.querySelector('.spaceship');
-        const step = 10; // Define the movement step
+  document.addEventListener('mousemove', function (event) {
+    const spaceship = document.querySelector('.spaceship');
+    const spaceshipWidth = spaceship.offsetWidth;
+    const spaceshipHeight = spaceship.offsetHeight;
 
-        switch (event.code) {
-            case 'ArrowLeft':
-                spaceship.style.left = Math.max(0, spaceship.offsetLeft - step) + 'px';
-                break;
-            case 'ArrowRight':
-                spaceship.style.left = Math.min(window.innerWidth - spaceship.offsetWidth, spaceship.offsetLeft + step) + 'px';
-                break;
-            case 'ArrowUp':
-                spaceship.style.top = Math.max(0, spaceship.offsetTop - step) + 'px';
-                break;
-            case 'ArrowDown':
-                spaceship.style.top = Math.min(window.innerHeight - spaceship.offsetHeight, spaceship.offsetTop + step) + 'px';
-                break;
-            case 'Space':
-                event.preventDefault(); // Impede o comportamento padrão da barra de espaço
-                shoot();
-                break;
-        }
+    // Calcula a nova posição da nave
+    const newLeft = Math.min(window.innerWidth - spaceshipWidth, Math.max(0, event.clientX - spaceshipWidth / 2));
+    const newTop = Math.min(window.innerHeight - spaceshipHeight, Math.max(0, event.clientY - spaceshipHeight / 2));
 
-        // Check for collision with letters
-        const elements = document.elementsFromPoint(spaceship.offsetLeft + spaceship.offsetWidth / 2, spaceship.offsetTop + spaceship.offsetHeight / 2);
+    // Atualiza a posição da nave
+    spaceship.style.left = newLeft + 'px';
+    spaceship.style.top = newTop + 'px';
+});
+
+document.addEventListener('keydown', function (event) {
+    if (event.code === 'Space') {
+        event.preventDefault(); // Impede o comportamento padrão da barra de espaço
+        shoot();
+    }
+});
+
+function shoot() {
+    const bullet = document.createElement('div');
+    bullet.className = 'bullet';
+    const spaceship = document.querySelector('.spaceship');
+    bullet.style.left = spaceship.offsetLeft + spaceship.offsetWidth / 2 - 2.5 + 'px';
+    bullet.style.top = spaceship.offsetTop + 'px';
+    document.body.appendChild(bullet);
+
+    // Adiciona a borda de choque
+    spaceship.classList.add('shock-border');
+
+    // Remove a borda de choque após 200ms
+    setTimeout(() => {
+        spaceship.classList.remove('shock-border');
+    }, 200);
+
+    const interval = setInterval(() => {
+        bullet.style.top = bullet.offsetTop - 5 + 'px';
+
+        const elements = document.elementsFromPoint(bullet.offsetLeft + bullet.offsetWidth / 2, bullet.offsetTop);
         elements.forEach(element => {
             if (element.classList.contains('letter')) {
+                createShards(element);
                 element.remove();
             }
         });
-    });
 
-    function shoot() {
-        const bullet = document.createElement('div');
-        bullet.className = 'bullet';
-        const spaceship = document.querySelector('.spaceship');
-        bullet.style.left = spaceship.offsetLeft + spaceship.offsetWidth / 2 - 2.5 + 'px';
-        bullet.style.top = spaceship.offsetTop + 'px';
-        document.body.appendChild(bullet);
+        if (bullet.offsetTop < 0) {
+            bullet.remove();
+            clearInterval(interval);
+        }
+    }, 10);
+}
 
-        // Adiciona a borda de choque
-        spaceship.classList.add('shock-border');
+function createShards(element) {
+    const numShards = 15; // Número de estilhaços reduzido
+    const letter = element.textContent;
+    const parent = element.parentElement;
+    const rect = element.getBoundingClientRect();
 
-        // Remove a borda de choque após 200ms
-        setTimeout(() => {
-            spaceship.classList.remove('shock-border');
-        }, 200);
+    for (let i = 0; i < numShards; i++) {
+        const shard = document.createElement('span');
+        shard.className = 'letter shard';
+        shard.textContent = letter;
+        shard.style.position = 'absolute';
+        shard.style.left = `${rect.left + window.scrollX}px`;
+        shard.style.top = `${rect.top + window.scrollY}px`;
+        shard.style.setProperty('--shatter-x', `${(Math.random() - 0.1) * 100}px`);
+        shard.style.setProperty('--shatter-y', `${(Math.random() - 0.1) * 100}px`);
+        document.body.appendChild(shard);
 
-        const interval = setInterval(() => {
-            bullet.style.top = bullet.offsetTop - 5 + 'px';
-
-            const elements = document.elementsFromPoint(bullet.offsetLeft, bullet.offsetTop);
-            for (let element of elements) {
-                if (element.classList.contains('letter')) {
-                    element.remove();
-                    bullet.remove();
-                    clearInterval(interval);
-                    return;
-                }
-            }
-
-            if (bullet.offsetTop < 0) {
-                bullet.remove();
-                clearInterval(interval);
-            }
-        }, 10);
+        // Remove o estilhaço após a animação
+        setTimeout(() => shard.remove(), 500);
     }
+}
 
-    function toggleSpaceship() {
-        const spaceship = document.querySelector('.spaceship');
-        spaceship.classList.toggle('hidden');
-    }
+function toggleSpaceship() {
+    const spaceship = document.querySelector('.spaceship');
+    spaceship.classList.toggle('hidden');
+}
 
-    document.addEventListener('DOMContentLoaded', () => {
-        const textElements = document.querySelectorAll('.title-name h1, .title-name p');
-        textElements.forEach(element => {
-            element.innerHTML = element.textContent.replace(/\S/g, "<span class='letter'>$&</span>");
-        });
+document.addEventListener('DOMContentLoaded', () => {
+    const textElements = document.querySelectorAll('.title-name h1, .title-name p');
+    textElements.forEach(element => {
+        element.innerHTML = element.textContent.replace(/\S/g, "<span class='letter'>$&</span>");
     });
+});
 
-    document.addEventListener('DOMContentLoaded', () => {
-        const textElements = document.querySelectorAll('.title-name h1, .title-name p');
-        textElements.forEach(element => {
-            element.innerHTML = element.textContent.replace(/\S/g, (match, index) => `<span class='letter' style='--index: ${index}'>${match}</span>`);
-        });
+document.addEventListener('DOMContentLoaded', () => {
+    const textElements = document.querySelectorAll('.title-name h1, .title-name p');
+    textElements.forEach(element => {
+        element.innerHTML = element.textContent.replace(/\S/g, (match, index) => `<span class='letter' style='--index: ${index}'>${match}</span>`);
     });
+});
+
 </script>
 
 
