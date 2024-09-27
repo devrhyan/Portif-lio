@@ -12,7 +12,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/3.1.2/fullpage.min.js"></script>
 
 
-    <script>
+    <!-- <script>
         document.addEventListener("DOMContentLoaded", function () {
             if (!localStorage.getItem('visited')) {
                 window.location.href = '/welcome.html';
@@ -20,11 +20,11 @@
                 localStorage.removeItem('visited');
             }
         });
-    </script>
+    </script> -->
 </head>
 
 <body>
-    <div class="top">
+    <div class="top" style="position:static">
         <div class="links">
             <a href="https://www.linkedin.com/in/rhyan-andrade-b66b271b9" target="_blank"><i
                     class='bx bxl-linkedin-square'></i></a>
@@ -42,7 +42,7 @@
                 </div>
             </div>
 
-            <div id="bg"></div>
+            <!-- <div id="bg"></div> -->
             <!-- <nav id="burger">
                 <svg class="brg burger-top" width="57" height="12" viewBox="0 0 57 12" fill="none"
                     xmlns="http://www.w3.org/2000/svg">
@@ -90,48 +90,139 @@
             </nav> -->
         </div>
     </div>
+    <main style="max-width: 1300px;margin:0 auto !important; width:100%;">
 
-    <div id="section1" class="content">
-        <div class="content-1">
-            <div class="title-name">
-                <p>Rhyan Andrade</p>
-                <h1>Desenvolvedor <br> Front-End</h1>
-                <p class="content">Gosto de criar produtos front-end sólidos e escaláveis com ótimas experiências do
-                    usuário</p>
+        <div id="section1" class="content">
+            <div class="content-1">
+                <div class="title-name">
+                    <p>Rhyan Andrade</p>
+                    <h1>Desenvolvedor <br> Front-End</h1>
+                    <p class="content">Gosto de criar produtos front-end sólidos e escaláveis com ótimas experiências do
+                        usuário</p>
+                </div>
+                <div class="btn">
+                    <a href="https://github.com/devrhyan" class="botao">Github</a>
+                    <a href="https://www.linkedin.com/in/rhyan-andrade-b66b271b9" class="botao">LinkedIn</a>
+                </div>
             </div>
+            <div class="img-screen">
+                <img src="/Img/img-1.png" alt="">
+            </div>
+        </div>
+        <div class="scroll-downs">
+            <div class="mousey">
+                <div class="scroller"></div>
+            </div>
+        </div>
+
+        <div class="content-2">
+            <div class="img-1">
+                <img src="/Img/img-3.png" alt="">
+            </div>
+            <div class="box">
+                <div class="img-2">
+                    <img src="/Img/img-1.png" alt="">
+                </div>
+                <div class="img-2">
+                    <img src="/Img/img-4.png" alt="">
+                </div>
+            </div>
+        </div>
+
+        <div class="content-3">
+            <h1>
+                As cores do meu logótipo
+            </h1>
+            <div class="colors">
+                <div class="color-1"></div>
+                <div class="color-2"></div>
+                <div class="color-3"></div>
+            </div>
+            <p>As cores de um logótipo são cruciais para moldar a perceção da marca. Ao selecionar e combinar
+                cuidadosamente as cores,
+                as marcas podem comunicar eficazmente a sua mensagem, evocar as emoções desejadas e criar uma ligação
+                mais profunda com
+                o seu público-alvo
+            </p>
+        </div>
+
+
+        <div class="content-4">
+            <div class="img-5">
+                <img src="/Img/img-5.png" alt="">
+            </div>
+            <div class="box">
+                <div class="img-6">
+                    <img src="/Img/img-6.png" alt="">
+                </div>
+                <div class="img-6">
+                    <img src="/Img/img-7.png" alt="">
+                </div>
+                <div class="img-6">
+                    <img src="/Img/img-8.png" alt="">
+                </div>
+            </div>
+        </div>
+
+        <div class="content-5">
+            <div class="type">
+                <h1>
+                    Tipografia
+                </h1>
+                <p>
+                    A escolha do tipo de letra para um logótipo cria a primeira impressão e transmite o carácter da
+                    marca. É essencial
+                    escolher um tipo de letra de que goste e que esteja de acordo com os valores e emoções da sua marca.
+                    Este alinhamento
+                    ajuda a promover uma ligação autêntica com os seus clientes.
+                </p>
+            </div>
+            <div class="img-type">
+                <img src="/Img/img-9.png" alt="teste">
+            </div>
+        </div>
+
+        <div class="content-6">
+            <div class="big-screen">
+                <img src="/Img/img-13.png" alt="">
+            </div>
+            <div class="box">
+                <div class="img-card">
+                    <img src="/Img/img-11.png" alt="">
+                </div>
+                <div class="img-card">
+                    <img src="/Img/img-14.png" alt="">
+                </div>
+            </div>
+        </div>
+
+
+        <div class="content-7">
+            <div class="contact">
+                <h1>
+                    Envie-me uma mensagem!
+                </h1>
+                <p>
+                    Tem uma pergunta ou proposta, ou apenas quer dizer olá? Vá em frente.
+                </p>
+            </div>
+            <div class="form" style="display: flex; width:80%; gap:2rem;">
+                <form class="form2" class="caixa-input">
+                    <input type="text" placeholder="Digite seu nome" required>
+                    </button>
+                </form>
+                <form class="form2" class="caixa-input">
+                    <input type="text" placeholder="E-mail" required>
+                </form>
+            </div>
+            <form class="form2" class="caixa-input" style="width:80%;">
+                <input type="text" placeholder="Sua mensagem" required>
+            </form>
             <div class="btn">
-                <a href="#" class="botao">Github</a>
-                <a href="#" class="botao">LinkedIn</a>
+                <a href="#" class="botao">Enviar</a>
             </div>
         </div>
-        <div class="img">
-            <img src="/Img/img-2.png" alt="">
-        </div>
-    </div>
-    <div class="scroll-downs">
-        <div class="mousey">
-            <div class="scroller"></div>
-        </div>
-    </div>
-
-    <div id="section1" class="content">
-        <div class="content-1">
-            <div class="title-name">
-                <p>Rhyan Andrade</p>
-                <h1>Desenvolvedor <br> Front-End</h1>
-                <p class="content">Gosto de criar produtos front-end sólidos e escaláveis com ótimas experiências do
-                    usuário</p>
-            </div>
-            <div class="btn">
-                <a href="#" class="botao">Github</a>
-                <a href="#" class="botao">LinkedIn</a>
-            </div>
-        </div>
-        <div class="img">
-            <img src="/Img/img-2.png" alt="">
-        </div>
-    </div>
-
+    </main>
     <script src="/Controllers/script.js"></script>
     <script src="/Controllers/switch.js"></script>
 
